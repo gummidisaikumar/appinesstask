@@ -1,0 +1,23 @@
+
+.common-form-control {
+    font-family: $avenir-light !important;
+    font-size: $fs-14px !important;
+    color: $charcoal-grey !important;
+    border-radius: $fs-4px !important;
+    border-color: $gain-boro-white !important;
+    height: $fs-40px !important;
+    @include setFont(300  !important, normal  !important, normal  !important, normal  !important, left  !important);
+    &:focus {
+      color: $charcoal-grey !important;
+      box-shadow: none !important;
+      border-color: $gain-boro-white !important;
+    }
+    &::placeholder {
+      opacity: 0.6 !important;
+    }
+  }
+  
+  .common-form-control--left-radius-none{
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }

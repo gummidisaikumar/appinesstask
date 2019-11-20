@@ -1,0 +1,50 @@
+@import "colors";
+@import "mixins";
+@import "fonts";
+
+
+.custom-btn-viking-blue {
+  background-color: $viking-blue;
+  color: $white;
+  font-size: $fs-16px;
+  border-radius: $fs-8px !important;
+  @include setFont(500, normal, normal, normal, center);
+  @include setPadding($fs-8px, $fs-20px, $fs-8px, $fs-20px);
+  font-family: $roboto-medium;
+  border-color: $viking-blue;
+  border-radius: $fs-2px !important;
+  &:hover {
+    background-color: $viking-blue !important;
+    color: $white !important;
+    border-color: $viking-blue;
+  }
+  &:focus {
+    background-color: $viking-blue !important;
+    color: $white !important;
+    box-shadow: none !important;
+    border-color: $viking-blue;
+  }
+}
+
+
+.custom-btn{
+  @include setFont(500, normal, normal, normal, center);
+  font-family: $roboto-medium;
+  font-size: 0.875rem;
+    background: #ffe0a1;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    color: #4a4a4a;
+    border-color: #ffe0a1;
+    &:hover {
+      background: #ffe0a1;
+      color: #4a4a4a;
+      border-color: #ffe0a1;
+    }
+    &:focus {
+      box-shadow: none !important;
+      background: #ffe0a1;
+      color: #4a4a4a;
+      border-color: #ffe0a1;
+    }
+}

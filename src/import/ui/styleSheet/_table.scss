@@ -1,0 +1,23 @@
+.custom-table {
+  thead {
+    tr {
+      background-color: $black;
+      th{
+        font-family: $roboto-medium;
+        color: $white;
+        font-size: $fs-14px;
+        @include setFont(500, normal, normal, normal, center);
+      }
+    }
+  }
+  tbody{
+      tr{
+        td{
+            font-family: $avenir-medium;
+            color: $black;
+            font-size: $fs-14px;
+            @include setFont(500, normal, normal, normal, center);
+        }  
+      }
+  }
+}
