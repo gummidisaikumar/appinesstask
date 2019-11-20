@@ -1,5 +1,8 @@
 import React from "react";
 import RenderApp from "./RenderApp";
+import {Provider} from 'react-redux';
+import store from '../../modules/redux/store';
+
 import './App.scss';
 
 class App extends React.Component {
@@ -10,7 +13,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <RenderApp/>
+          <Provider store={store}>
+           <RenderApp/>
+          </Provider>
       </div>
     );
   }
