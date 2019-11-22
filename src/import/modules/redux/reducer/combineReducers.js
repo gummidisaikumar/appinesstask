@@ -3,7 +3,7 @@ import employeeReducer from "./employeeReducer";
 
 
 const allReducer = combineReducers({
-    Employee: employeeReducer,
+  employee: employeeReducer,
   });
   
   
