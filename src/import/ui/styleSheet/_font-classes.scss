@@ -93,19 +93,6 @@
   text-align: left;
 }
 
-// page title is h6 tag
-.page__section__sub-header {
-  font-family: $openSan-regular;
-  color: $black;
-  @include setMargin(0, 0, 0, 0);
-  @include setPadding(0, 0, 0, 0);
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  letter-spacing: normal;
-  text-align: left;
-}
-
 //title color
 .title-white {
   color: $white;

@@ -5,14 +5,38 @@ import RenderPage from "../../customComponent/common/RenderPage/RenderPage";
 import Strip from "../../customComponent/common/Strip/Strip";
 import { applicationContants } from "../../constants/applicationContants";
 import employee from "../../../modules/redux/actions/employeeActions";
+import FormValidator from "../../../utilies/FormValidator";
+import IsInputInError from "../../../utilies/isInputInError";
 
 class Login extends React.Component {
+  
   constructor(props) {
     super(props);
+
+    this.validator = new FormValidator([
+      {
+        field: 'emailId',
+        constraints: [{ method: 'isEmpty', validWhen: false, message: 'Email is required.' },
+          { method: 'isEmail', validWhen: true, message: 'That is not a valid email.' }],
+        touched: false,
+      },
+      {
+        field: 'password',
+        constraints: [{ method: 'isEmpty', validWhen: false, message: 'Password is required.' },
+          {
+            method: 'isLength', validWhen: true, message: 'Password should be between 6 to 10 characters long.', args: [{ min: 6, max: 10 }],
+          }],
+        touched: false,
+      },
+    ]);
+
     this.state = {
       emailId: "",
-      password: ""
+      password: "",
+      validation: this.validator.valid(),
     };
+  
+    this.isValidate = true;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -23,6 +47,7 @@ class Login extends React.Component {
 
   handleInputChange(event) {
     event.preventDefault();
+    this.validator.touched(event.target.name);
     this.setState({
       [event.target.name]: event.target.value
     });
@@ -49,7 +74,7 @@ class Login extends React.Component {
   }
 
   render() {
-
+    const validation = this.isValidate ? this.validator.validate(this.state) : this.state.validation;
     return (
       <RenderPage
         className="render-page render-no-page min-height-full"
@@ -63,8 +88,6 @@ class Login extends React.Component {
           <Row className="justify-content-center min-height-full align-items-center">
             <Col xs={8} sm={8} md={4} lg={3} xl={3}>
               <Form
-                ref={form => (this.form = form)}
-                onSubmit={event => event.preventDefault()}
               >
                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                   <Row className="justify-content-center pb-24px">
@@ -80,6 +103,7 @@ class Login extends React.Component {
                   <Label className="p-medium page__title title-black align-left mb-8px">
                   EmailId
                   </Label>
+                  <div className={IsInputInError(validation.emailId.isInvalid)}>
                   <Input
                     placeholder="emailId"
                     type="text"
@@ -89,6 +113,8 @@ class Login extends React.Component {
                     onChange={this.handleInputChange}
                     value={this.state.emailId}
                   />
+                     <p className="p-small external-help-block">{validation.emailId.message}</p>
+                  </div>
                 </FormGroup>
                 <FormGroup>
                   <Label>
@@ -96,6 +122,7 @@ class Login extends React.Component {
                       Password
                     </p>
                   </Label>
+                  <div className={IsInputInError(validation.password.isInvalid)}>
                   <Input
                     placeholder="Password"
                     type="password"
@@ -106,6 +133,8 @@ class Login extends React.Component {
                     onChange={this.handleInputChange}
                     value={this.state.password}
                   />
+                    <p className="p-small external-help-block">{validation.password.message}</p>
+                  </div>
                 </FormGroup>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                   <Row className="justify-content-end pb-24px">
