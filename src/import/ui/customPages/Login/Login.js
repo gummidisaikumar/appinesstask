@@ -86,7 +86,7 @@ class Login extends React.Component {
           id="tst-login"
         >
           <Row className="justify-content-center min-height-full align-items-center">
-            <Col xs={8} sm={8} md={4} lg={3} xl={3}>
+            <Col xs={8} sm={8} md={8} lg={3} xl={3}>
               <Form
               >
                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
